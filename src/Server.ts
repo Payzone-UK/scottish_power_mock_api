@@ -1,11 +1,8 @@
 import logger from "morgan";
 import express from "express";
-import bodyParser from "body-parser";
 import methodOverride from "method-override";
 import * as path from "path";
-import { MockSoapController } from "./controllers/mock-soap.controller";
-// import { MyPort }  from "./services/mock_soap.service";
-
+import { soap } from "express-soap";
 
 export class Server {
     public app: express.Application;
@@ -13,25 +10,16 @@ export class Server {
 
     constructor() {
         this.app = express();
-        const soap = require("soap");
 
-        const xml = require("fs").readFileSync("./wsdl/PrepaymentRequest_Out_251.wsdl", "utf8");
 
-        this.app.use(bodyParser.raw({type: function() { return true; }, limit: "5mb"}));
-        this.app.listen(8001, function() {
-            // Note: /wsdl route will be handled by soap module
-            // and all other routes & middleware will continue to work
-            // soap.listen(this.app, "/wsdl", MockSoapService, xml);
-        });
     }
 
     public static run(): Server {
-        console.log("The Scottish Power Product Server is Running");
+        console.log("The Scottish Power Product Server is Running honestly");
 
         const server = new Server();
 
         server.configure();
-        // MockSoapController.create();
 
         return server;
     }
@@ -40,8 +28,29 @@ export class Server {
 
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(logger("dev"));
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
+
         this.app.use(methodOverride());
+        const xml = require("fs").readFileSync("./wsdl/calculator.wsdl", "utf8");
+
+        // Call http://localhost:3090/soap/calculation?wsdl
+        this.app.use("/soap/calculation", soap({
+            services: {
+                CalculatorService: {
+                    Calculator: {
+                        Add({a, b}, res) {
+                            res({
+                                result: a + b
+                            });
+                        },
+                        Subtract({a, b}, res) {
+                            res({
+                                result: a - b
+                            });
+                        }
+                    }
+                }
+            },
+            wsdl: xml
+        }));
     }
 }
