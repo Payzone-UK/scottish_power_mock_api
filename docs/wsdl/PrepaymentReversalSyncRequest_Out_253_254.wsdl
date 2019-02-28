@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SI_PrepaymentReversalSyncRequest_Out"
+                  targetNamespace="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254"
+                  xmlns:p1="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:documentation/>
+    <wsp:UsingPolicy wsdl:required="true"/>
+    <wsp:Policy wsu:Id="OP_SI_PrepaymentReversalSyncRequest_Out"/>
+    <wsdl:types>
+        <xsd:schema targetNamespace="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    xmlns="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254">
+            <xsd:element name="MT_PrepaymentReversalResponseOutput_253_254"
+                         type="DT_PrepaymentReversalSyncResponse_253_254"/>
+            <xsd:element name="MT_PrepaymentReversalRequestInput_253_254"
+                         type="DT_PrepaymentReversalSyncRequest_253_254"/>
+            <xsd:complexType name="DT_PrepaymentReversalSyncRequest_253_254">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="EN">Prepayment reversal request</xsd:documentation>
+                    <xsd:appinfo source="http://sap.com/xi/VersionID">5a7df0f644cb11e5b26400000070f68e</xsd:appinfo>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="Request">
+                        <xsd:annotation>
+                            <xsd:appinfo source="http://sap.com/xi/TextID">fadb1c6d3ff511e59fe7180373186934
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ExternalID" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d53f3811e5911e180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>External ID from payment outlet</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PaymentIdentifier" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d63f3811e5b9f7180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>Payment Identifier</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="UTRN" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d73f3811e5a295180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>UTRN</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="DT_PrepaymentReversalSyncResponse_253_254">
+                <xsd:annotation>
+                    <xsd:documentation xml:lang="EN">Prepayment reversal response</xsd:documentation>
+                    <xsd:appinfo source="http://sap.com/xi/VersionID">8bb2d99544cb11e5bd5800000070f68e</xsd:appinfo>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="Response">
+                        <xsd:annotation>
+                            <xsd:appinfo source="http://sap.com/xi/TextID">fadb1c6d3ff511e59fe7180373186934
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ExternalID" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d53f3811e5911e180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>External ID from payment outlet</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PaymentIdentifier" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d63f3811e5b9f7180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>Payment Identifier</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="UTRN" type="xsd:string">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            1ef3d0d73f3811e5a295180373186934
+                                        </xsd:appinfo>
+                                        <xsd:documentation>UTRN</xsd:documentation>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="Messages" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            fadb1c6c3ff511e593a8180373186934
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                    <xsd:complexType>
+                                        <xsd:sequence>
+                                            <xsd:element name="Message" minOccurs="0" maxOccurs="unbounded">
+                                                <xsd:annotation>
+                                                    <xsd:appinfo source="http://sap.com/xi/TextID">
+                                                        fadb1c6b3ff511e59026180373186934
+                                                    </xsd:appinfo>
+                                                </xsd:annotation>
+                                                <xsd:complexType>
+                                                    <xsd:sequence>
+                                                        <xsd:element name="Type" type="xsd:string">
+                                                            <xsd:annotation>
+                                                                <xsd:appinfo source="http://sap.com/xi/TextID">
+                                                                    1ef3d0d83f3811e5b8f6180373186934
+                                                                </xsd:appinfo>
+                                                                <xsd:documentation>Type of Message
+                                                                    “E” – Error
+                                                                    “S” – Success
+                                                                </xsd:documentation>
+                                                            </xsd:annotation>
+                                                        </xsd:element>
+                                                        <xsd:element name="Code" type="xsd:string">
+                                                            <xsd:annotation>
+                                                                <xsd:appinfo source="http://sap.com/xi/TextID">
+                                                                    1ef3d0d93f3811e5867c180373186934
+                                                                </xsd:appinfo>
+                                                                <xsd:documentation>Error</xsd:documentation>
+                                                            </xsd:annotation>
+                                                        </xsd:element>
+                                                        <xsd:element name="Text" type="xsd:string">
+                                                            <xsd:annotation>
+                                                                <xsd:appinfo source="http://sap.com/xi/TextID">
+                                                                    1ef3d0da3f3811e5b3bb180373186934
+                                                                </xsd:appinfo>
+                                                                <xsd:documentation>Error</xsd:documentation>
+                                                            </xsd:annotation>
+                                                        </xsd:element>
+                                                    </xsd:sequence>
+                                                </xsd:complexType>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                    </xsd:complexType>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="MT_PrepaymentReversalRequestInput_253_254">
+        <wsdl:documentation/>
+        <wsdl:part name="MT_PrepaymentReversalRequestInput_253_254"
+                   element="p1:MT_PrepaymentReversalRequestInput_253_254"/>
+    </wsdl:message>
+    <wsdl:message name="MT_PrepaymentReversalResponseOutput_253_254">
+        <wsdl:documentation/>
+        <wsdl:part name="MT_PrepaymentReversalResponseOutput_253_254"
+                   element="p1:MT_PrepaymentReversalResponseOutput_253_254"/>
+    </wsdl:message>
+    <wsdl:portType name="SI_PrepaymentReversalSyncRequest_Out">
+        <wsdl:documentation/>
+        <wsdl:operation name="SI_PrepaymentReversalSyncRequest_Out">
+            <wsdl:documentation/>
+            <wsp:Policy>
+                <wsp:PolicyReference URI="#OP_SI_PrepaymentReversalSyncRequest_Out"/>
+            </wsp:Policy>
+            <wsdl:input message="p1:MT_PrepaymentReversalRequestInput_253_254"/>
+            <wsdl:output message="p1:MT_PrepaymentReversalResponseOutput_253_254"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SI_PrepaymentReversalSyncRequest_OutBinding" type="p1:SI_PrepaymentReversalSyncRequest_Out">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"
+                      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        <wsdl:operation name="SI_PrepaymentReversalSyncRequest_Out">
+            <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+                            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <wsdl:input>
+                <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SP_PAYOUTLET_D_SI_PrepaymentReversalSyncRequest_Out">
+        <wsdl:port name="HTTP_Port" binding="p1:SI_PrepaymentReversalSyncRequest_OutBinding">
+            <soap:address
+                    location="http://fiswd01desa.iberdrola.es:8107/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=SP_PAYOUTLET_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_PrepaymentReversalSyncRequest_Out&amp;interfaceNamespace=urn%3Ascottishpower.com%3ASMART%3APAYOUTLET%3AISU1%3APrepaymentReversalSyncRequest%3A253_254"
+                    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </wsdl:port>
+        <wsdl:port name="HTTPS_Port" binding="p1:SI_PrepaymentReversalSyncRequest_OutBinding">
+            <soap:address
+                    location="https://fiswd01desa.iberdrola.es:8107/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=SP_PAYOUTLET_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_PrepaymentReversalSyncRequest_Out&amp;interfaceNamespace=urn%3Ascottishpower.com%3ASMART%3APAYOUTLET%3AISU1%3APrepaymentReversalSyncRequest%3A253_254"
+                    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

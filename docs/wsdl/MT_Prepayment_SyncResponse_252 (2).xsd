@@ -1,0 +1,23 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentResponse:252" targetNamespace="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentResponse:252">
+   <xsd:element name="MT_Prepayment_SyncResponseInput_252" type="DT_Prepayment_SyncResponse_252" />
+   <xsd:complexType name="DT_Prepayment_SyncResponse_252">
+      <xsd:sequence>
+         <xsd:element name="Response">
+            <xsd:complexType>
+               <xsd:sequence>
+                  <xsd:element name="SuccessFlag" type="xsd:boolean" />
+                  <xsd:element name="ErrorSegment" minOccurs="0">
+                     <xsd:complexType>
+                        <xsd:sequence>
+                           <xsd:element name="ErrorCode" type="xsd:string" />
+                           <xsd:element name="ErrorMessage" type="xsd:string" />
+                        </xsd:sequence>
+                     </xsd:complexType>
+                  </xsd:element>
+               </xsd:sequence>
+            </xsd:complexType>
+         </xsd:element>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>

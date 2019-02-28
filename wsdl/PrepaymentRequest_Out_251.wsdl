@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SI_PrepaymentRequest_Out"
+                  targetNamespace="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentRequest:251"
+                  xmlns:p1="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentRequest:251"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:documentation/>
+    <wsp:UsingPolicy wsdl:required="true"/>
+    <wsp:Policy wsu:Id="OP_SI_PrepaymentRequest_Out"/>
+    <wsdl:types>
+        <xsd:schema targetNamespace="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentRequest:251"
+                    xmlns="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentRequest:251"
+                    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="MT_PrepaymentRequestInput_251" type="DT_PrepaymentRequest_251"/>
+            <xsd:complexType name="DT_PrepaymentRequest_251">
+                <xsd:annotation>
+                    <xsd:appinfo source="http://sap.com/xi/VersionID">961edfb44fad11e5c75000000070f68e</xsd:appinfo>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="Message">
+                        <xsd:annotation>
+                            <xsd:appinfo source="http://sap.com/xi/TextID">0e0548633ff011e5b57540a8f0423413
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="ExternalID" type="xsd:string" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            0e0510fc3ff011e5a0ae40a8f0423413
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PaymentIdentifier" type="xsd:string" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            0e0548603ff011e5930440a8f0423413
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="PaymentSource" type="xsd:string" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            0e0548613ff011e5a33e40a8f0423413
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                                <xsd:element name="Amount" type="xsd:decimal" minOccurs="0">
+                                    <xsd:annotation>
+                                        <xsd:appinfo source="http://sap.com/xi/TextID">
+                                            0e0548623ff011e5b2ba40a8f0423413
+                                        </xsd:appinfo>
+                                    </xsd:annotation>
+                                </xsd:element>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="MT_PrepaymentRequestInput_251">
+        <wsdl:documentation/>
+        <wsdl:part name="MT_PrepaymentRequestInput_251" element="p1:MT_PrepaymentRequestInput_251"/>
+    </wsdl:message>
+    <wsdl:portType name="SI_PrepaymentRequest_Out">
+        <wsdl:documentation/>
+        <wsdl:operation name="SI_PrepaymentRequest_Out">
+            <wsdl:documentation/>
+            <wsp:Policy>
+                <wsp:PolicyReference URI="#OP_SI_PrepaymentRequest_Out"/>
+            </wsp:Policy>
+            <wsdl:input message="p1:MT_PrepaymentRequestInput_251"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SI_PrepaymentRequest_OutBinding" type="p1:SI_PrepaymentRequest_Out">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"
+                      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        <wsdl:operation name="SI_PrepaymentRequest_Out">
+            <soap:operation soapAction="http://sap.com/xi/WebService/soap1.1"
+                            xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <wsdl:input>
+                <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="SP_PAYOUTLET_D_SI_PrepaymentRequest_Out">
+        <wsdl:port name="HTTP_Port" binding="p1:SI_PrepaymentRequest_OutBinding">
+            <soap:address
+                    location="http://fiswd01desa.iberdrola.es:8107/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=SP_PAYOUTLET_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_PrepaymentRequest_Out&amp;interfaceNamespace=urn%3Ascottishpower.com%3ASMART%3APAYOUTLET%3AISU1%3AprepaymentRequest%3A251"
+                    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </wsdl:port>
+        <wsdl:port name="HTTPS_Port" binding="p1:SI_PrepaymentRequest_OutBinding">
+            <soap:address
+                    location="https://fiswd01desa.iberdrola.es:8107/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=SP_PAYOUTLET_D&amp;receiverParty=&amp;receiverService=&amp;interface=SI_PrepaymentRequest_Out&amp;interfaceNamespace=urn%3Ascottishpower.com%3ASMART%3APAYOUTLET%3AISU1%3AprepaymentRequest%3A251"
+                    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
