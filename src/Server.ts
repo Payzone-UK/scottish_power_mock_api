@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import methodOverride from "method-override";
 import * as path from "path";
 import { MockSoapController } from "./controllers/mock-soap.controller";
-import { MyPort }  from "./services/mock_soap.service";
+// import { MyPort }  from "./services/mock_soap.service";
 
 
 export class Server {
@@ -21,7 +21,7 @@ export class Server {
         this.app.listen(8001, function() {
             // Note: /wsdl route will be handled by soap module
             // and all other routes & middleware will continue to work
-            soap.listen(this.app, "/wsdl", MockSoapService, xml);
+            // soap.listen(this.app, "/wsdl", MockSoapService, xml);
         });
     }
 

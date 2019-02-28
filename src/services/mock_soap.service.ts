@@ -3,8 +3,9 @@
  *
  * These functions act as a mock of the Scottish Power SOAP API
  */
+/*
 export class  MyService {
-     public class MyPort: any {
+     public class MyPort {
         MyFunction(args: any ) {
             return {
                 name: args.name
@@ -45,3 +46,4 @@ export class  MyService {
         }
     }
 }
+*/
