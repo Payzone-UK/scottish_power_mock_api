@@ -15,7 +15,7 @@ export class Server {
     }
 
     public static run(): Server {
-        console.log("The Scottish Power Product Server is Running honestly");
+        console.log("The Scottish Power Product Server is Running now");
 
         const server = new Server();
 

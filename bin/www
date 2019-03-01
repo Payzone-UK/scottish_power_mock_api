@@ -11,7 +11,7 @@ const cluster = require('cluster')
 if (cluster.isMaster) {
     const cpuCount = process.env.WEB_CONCURRENCY || 1
 
-    console.log("NNNNumber of CPUs available for us are: " + cpuCount)
+    console.log("Number of CPUs available for us are: " + cpuCount)
 
     for (let i = 0; i < cpuCount; i++) {
         cluster.fork()
