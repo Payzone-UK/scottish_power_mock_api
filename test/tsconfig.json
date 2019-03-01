@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": true,
+    "pretty": true,
+    "lib": ["es6"]
+  },
+  "include": [
+    "services/**/*",
+    "specs/**/*",
+    "wsdls/**/*"
+  ],
+  "files": [
+    "app.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../lib"
+  ]
+}
