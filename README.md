@@ -8,13 +8,19 @@ They have provided the WSDL descriptions of the SOAP API and these are in the do
 
 The API is described in flow charts and documents the same place.
 
+The SOAPiness is from a couple of modules called 
 
+[node-soap](https://github.com/vpulim/node-soap) and [soap](https://github.com/RobinBuschmann/express-soap])
 
 ## Environment variables
+
+None needed
 
 ## Testing
 
 npm run build
+
+This shows that the SOAP API replies to a request
 
 npm run test
 
