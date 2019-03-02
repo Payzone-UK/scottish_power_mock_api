@@ -1,13 +1,13 @@
 // source:
 // https://github.com/Microsoft/Windows-classic-samples/blob/master/Samples/WebServices/HttpCalculatorClient/cpp/CalculatorService.wsdl
 
-export const wsdl = `<wsdl:definitions 
-    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
-    xmlns:tns="http://Example.org" 
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
-    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
-    targetNamespace="http://Example.org" 
+export const wsdl = `<wsdl:definitions
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://Example.org"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    targetNamespace="http://Example.org"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
     <wsdl:types>
         <xsd:schema targetNamespace="http://Example.org" elementFormDefault="qualified" >

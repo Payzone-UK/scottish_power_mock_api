@@ -12,7 +12,7 @@ exports.controllers = {
         beforeSoap: function (req, res, next) { return next(); },
         afterSoap: function (req, res, next) { return next(); }
     },
-    helloWorld: function (req, res, next) { return res.send('hello world'); }
+    helloWorld: function (req, res, next) { return res.send("hello world"); }
 };
 exports.app.use(function (req, res, next) { return exports.controllers.middlewares.beforeSoap(req, res, next); });
 exports.app.use(exports.SOAP_PATH, express_soap_1.soap({ services: { CalculatorService: calculator_service_1.calculatorService }, wsdl: calculator_1.wsdl }));

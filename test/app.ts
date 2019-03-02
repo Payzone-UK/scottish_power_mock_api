@@ -13,7 +13,7 @@ export const controllers = {
     beforeSoap: (req: Request, res: Response, next: NextFunction) => next(),
     afterSoap: (req: Request, res: Response, next: NextFunction) => next(),
   },
-  helloWorld: (req: Request, res: Response, next: NextFunction) => res.send('hello world')
+  helloWorld: (req: Request, res: Response, next: NextFunction) => res.send("hello world")
 };
 
 app.use((req, res, next) => controllers.middlewares.beforeSoap(req, res, next));

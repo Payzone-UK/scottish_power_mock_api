@@ -98,16 +98,15 @@ describe("CalculationService", () => {
     );
 
     it("should result with correct sum", () =>
-
       request(app)
         .post(SOAP_PATH)
         .send(ADD_XML)
         .then(data => {
-
+          console.log(SOAP_PATH);
           return new Promise(resolve => {
 
             parseString(data.text, (err, result) => {
-
+              console.log("Result !" + result["soap:Envelope"]["soap:Body"][0]["AddResponse"][0]["result"]);
               expect(result["soap:Envelope"]["soap:Body"][0]["AddResponse"][0]["result"][0]).to.eql('5');
 
               resolve();
