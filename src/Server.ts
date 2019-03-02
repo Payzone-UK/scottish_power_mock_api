@@ -22,10 +22,6 @@ export class Server {
         return server;
     }
 
-    private logMyStuff(): any {
-        console.log("LogMyStuff called");
-    }
-
     private configure(): void {
 
         this.app.use(express.static(path.join(__dirname, "public")));
