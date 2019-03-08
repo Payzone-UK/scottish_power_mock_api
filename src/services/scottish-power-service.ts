@@ -1,10 +1,14 @@
 export const scottishPowerService = {
     HTTPS_Port: {
-        SI_PrepaymentRequest_Out({a}: {a: number}, res: Function): void {
+        SI_PrepaymentRequest_Out(args: any ): void {
             console.log("SI_PrepaymentRequest_Out");
-            res({
-                result: a
-            });
+
+            const externalId = args["ExternalId"];
+            const paymentIdentifier = args["PaymentIdentifier"];
+            const paymentSource = args["PaymentSource"];
+            const amount = args["Amount"];
+
+            const guy = "hi";
         },
     }
 };
