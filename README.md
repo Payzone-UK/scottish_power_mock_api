@@ -14,6 +14,8 @@ In the diagram below, the purple octagon represents this server.
 
 ![Parts](docs/parts.png)
 
+
+
 ## Install
 
 npm run build
@@ -27,42 +29,48 @@ npm start
 
 From curl or Postman,  POST the following json to http://localhost:3090/scottish-power-251 
 
+The call should return successfully straight away, and then 2 - 10 seconds later, another
+request to SOAP 252 should be made from this mock server to the actual Scottish Power
+Product Server, at the URL pointed to by the environment variables PRODUCT_SERVER and 
+WSDL_252.
+
+This 252 call should provide a UTRN.
+
 
 ```xml
-
-&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"&gt;
-   &lt;soapenv:Header/&gt;
-   &lt;soapenv:Body&gt;
-     &lt;Message&gt;
-          &lt;MT_PrepaymentRequestInput_251&gt;
-            &lt;ExternalID&gt;PayzoneXYZ&lt;/ExternalID&gt;
-            &lt;PaymentIdentifier&gt;1234567765432&lt;/PaymentIdentifier&gt;
-            &lt;PaymentSource&gt;S&lt;/PaymentSource&gt;
-            &lt;Amount&gt;1112.00&lt;/Amount&gt;
-          &lt;/MT_PrepaymentRequestInput_251&gt;
-      &lt;/Message&gt;
-   &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;
-
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/“ xmlns:xsd=“http://www.w3.org/2001/XMLSchema">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ns0:MT_PrepaymentRequestInput_251 xmlns="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:prepaymentRequest:251">
+      <Message>
+        <ExternalID>PayzoneXYZ</ExternalID>
+        <PaymentIdentifier>1234567765432</PaymentIdentifier>
+        <PaymentSource>S</PaymentSource>
+        <Amount>643.00</Amount>
+      </Message>
+    </ns0:MT_PrepaymentRequestInput_251>
+  </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 Also for comparison http://localhost:3090/calculator
 
 ```xml
-&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"&gt;
-  &lt;soapenv:Header/&gt;
-   &lt;soapenv:Body&gt;
-      &lt;Add&gt;
-      	&lt;a&gt;222&lt;/a&gt;
-      	&lt;b&gt;3&lt;/b&gt;
-      &lt;/Add>
-   &lt;/soapenv:Body&gt;
-&lt;/soapenv:Envelope&gt;
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>
+   <soapenv:Body>
+      <Add>
+      	<a>222</a>
+      	<b>3</b>
+      </Add>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 ## Environment variables
 
 This is where the SOAP 252 reply will go to
+
 PRODUCT_SERVER_URL=http://localhost:3020
 
 WSDL_252=/two_five_two?wsdl
