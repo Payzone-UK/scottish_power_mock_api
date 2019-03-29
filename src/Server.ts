@@ -1,5 +1,6 @@
 import logger from "morgan";
 import express from "express";
+
 import * as path from "path";
 import { soap } from "express-soap";
 import { calculatorService } from "./services/calculator-service";
@@ -29,7 +30,7 @@ export class Server {
         this.app.use(logger("dev"));
 
         const scottishPowerXml = require("fs").readFileSync("./wsdl/PrepaymentRequest_Out_251.wsdl", "utf8");
-        this.app.use("/sp", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: scottishPowerService }, wsdl: scottishPowerXml}));
+        this.app.use("/scottish-power-251", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: scottishPowerService }, wsdl: scottishPowerXml}));
 
         // Call http://localhost:3090/soap/calculation?wsdl
         const calculatorXml = require("fs").readFileSync("./wsdl/calculator.wsdl", "utf8");

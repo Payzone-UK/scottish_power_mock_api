@@ -1,14 +1,69 @@
+/**
+ * This is the code called when a 251 SOAP request reaches the Mock SOAP
+ * server.
+ *
+ * It should return syncronously, but also set a timer to cause a 252
+ * SOAP request to be sent to the Product Server.
+ *
+ * The interval before the 252 is set randomly, to mimick the real scenario.
+ *
+ * @type {{HTTPS_Port: {SI_PrepaymentRequest_Out(args: any): void}}}
+ */
+
+import { EasySoap } from "../services/easy_soap";
+
 export const scottishPowerService = {
     HTTPS_Port: {
         SI_PrepaymentRequest_Out(args: any ): void {
-            console.log("SI_PrepaymentRequest_Out");
+            console.log("SI_PrepaymentRequest_Out called");
 
-            const externalId = args["ExternalId"];
-            const paymentIdentifier = args["PaymentIdentifier"];
-            const paymentSource = args["PaymentSource"];
-            const amount = args["Amount"];
+            const message = args["Message"];
 
-            const guy = "hi";
-        },
+            const  packet: Packet = {
+                externalId: message["ExternalID"],
+                paymentIdentifier: message["PaymentIdentifier"],
+                paymentSource: message["PaymentSource"],
+                amount: message["Amount"],
+            };
+
+            // A minimum of two seconds, randomly up to ten
+            const randomTime = 0; // 2000 + Math.floor((Math.random() * 8000) + 1);
+
+            // Schedule the 252 reply
+            setTimeout(send252, randomTime, packet);
+
+            // Return synchronously
+            return;
+        }
     }
 };
+
+interface Packet {
+    externalId: string;
+    paymentIdentifier: string;
+    paymentSource: string;
+    amount: string;
+}
+
+function send252(p: Packet) {
+    const easySoap = new EasySoap();
+
+    const wsdl_url = process.env.PRODUCT_SERVER_URL + process.env.WSDL_252;
+    const headers = {
+        "Content-Type": "text/xml;charset=UTF-8"
+    };
+
+    (async () => {
+        const {response} = await easySoap.soapRequest(wsdl_url, headers,
+            easySoap.get252XML(p.externalId,
+                p.paymentIdentifier,
+                "123459876"),
+            10000);
+
+        if (response.statusCode == 200) {
+            console.log("Sent UTRN via 252 successfully - ");
+        } else {
+            console.log("252 Failed to be sent");
+        }
+    })();
+}

@@ -39,7 +39,7 @@
                                         </xsd:appinfo>
                                     </xsd:annotation>
                                 </xsd:element>
-                                <xsd:element name="PaymentSource" type="xsd:string" minOccurs="0">
+                                <xsd:element name="UTRN" type="xsd:string" minOccurs="0">
                                     <xsd:annotation>
                                         <xsd:appinfo source="http://sap.com/xi/TextID">
                                             0e0548613ff011e5a33e40a8f0423413
