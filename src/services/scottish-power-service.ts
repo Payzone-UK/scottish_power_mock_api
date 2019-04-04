@@ -27,7 +27,7 @@ export const scottishPowerService = {
             };
 
             // A minimum of two seconds, randomly up to ten
-            const randomTime = 0; // 2000 + Math.floor((Math.random() * 8000) + 1);
+            const randomTime = 2000 + Math.floor((Math.random() * 2000) + 1);
 
             // Schedule the 252 reply
             setTimeout(send252, randomTime, packet);
@@ -53,17 +53,31 @@ function send252(p: Packet) {
         "Content-Type": "text/xml;charset=UTF-8"
     };
 
+    const randomUTRN = reverse_a_number(p.externalId);
+
     (async () => {
         const {response} = await easySoap.soapRequest(wsdl_url, headers,
             easySoap.get252XML(p.externalId,
                 p.paymentIdentifier,
-                "123459876"),
+                randomUTRN.toString() ),
             10000);
 
         if (response.statusCode == 200) {
-            console.log("Sent UTRN via 252 successfully - ");
+            console.log("Sent UTRN via 252 successfully - " + randomUTRN.toString() );
         } else {
             console.log("252 Failed to be sent");
         }
     })();
+}
+
+/*
+ * For testing, the utrl is the externalID reversed
+ * Another way is to use a random number, but that
+ * makes it harder to confirm that the utrn matches
+ * the calling JSON
+ * Math.floor((Math.random() * 200000) + 1);
+ */
+function reverse_a_number(n: string) {
+    n = n + "";
+    return n.split("").reverse().join("");
 }
