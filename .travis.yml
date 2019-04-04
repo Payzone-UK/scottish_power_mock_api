@@ -5,11 +5,7 @@ deploy:
   api_key:
     secure: 
   app:
-    master: scottish-power-alp-pz
-    test1: scottish-power-test1-pz
-    test2: scottish-power-test2-pz
-    test3: scottish-power-test3-pz
-    test4: scottish-power-test4-pz
+    test3: scottish-power-mock-api-pz
   run: restart
 services:
   - mongodb
