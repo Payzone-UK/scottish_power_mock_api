@@ -1,37 +1,25 @@
 import logger from "morgan";
 import express from "express";
-import bodyParser from "body-parser";
-import methodOverride from "method-override";
+
 import * as path from "path";
-import { MockSoapController } from "./controllers/mock-soap.controller";
-import { MyPort }  from "./services/mock_soap.service";
+import { soap } from "express-soap";
+import { calculatorService } from "./services/calculator-service";
+import { scottishPowerService } from "./services/scottish-power-service";
 
 
 export class Server {
     public app: express.Application;
-    private db: any;
 
     constructor() {
         this.app = express();
-        const soap = require("soap");
-
-        const xml = require("fs").readFileSync("./wsdl/PrepaymentRequest_Out_251.wsdl", "utf8");
-
-        this.app.use(bodyParser.raw({type: function() { return true; }, limit: "5mb"}));
-        this.app.listen(8001, function() {
-            // Note: /wsdl route will be handled by soap module
-            // and all other routes & middleware will continue to work
-            soap.listen(this.app, "/wsdl", MockSoapService, xml);
-        });
     }
 
     public static run(): Server {
-        console.log("The Scottish Power Product Server is Running");
+        console.log("Mock API for Scottish Power prepayments - running now");
 
         const server = new Server();
 
         server.configure();
-        // MockSoapController.create();
 
         return server;
     }
@@ -40,8 +28,12 @@ export class Server {
 
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(logger("dev"));
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use(methodOverride());
+
+        const scottishPowerXml = require("fs").readFileSync("./wsdl/PrepaymentRequest_Out_251.wsdl", "utf8");
+        this.app.use("/scottish-power-251", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: scottishPowerService }, wsdl: scottishPowerXml}));
+
+        // Call http://localhost:3090/soap/calculation?wsdl
+        const calculatorXml = require("fs").readFileSync("./wsdl/calculator.wsdl", "utf8");
+        this.app.use("/calculator", soap({ services: {CalculatorService: calculatorService }, wsdl: calculatorXml}));
     }
 }
