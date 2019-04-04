@@ -1,0 +1,18 @@
+language: node_js
+node_js: '9'
+deploy:
+  provider: heroku
+  api_key:
+    secure: 
+  app:
+    master: scottish-power-alp-pz
+    test1: scottish-power-test1-pz
+    test2: scottish-power-test2-pz
+    test3: scottish-power-test3-pz
+    test4: scottish-power-test4-pz
+  run: restart
+services:
+  - mongodb
+
+before_script:
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
