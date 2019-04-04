@@ -3,12 +3,11 @@ node_js: '9'
 deploy:
   provider: heroku
   api_key:
-    secure: 
+    secure: nS3G/fXrivug7tgMX1j1PmpV2C8NSYbdH/b/Djjnnb+gfNdlXuBlPRu1RyWcUkbYHUn2P3PtQuqeoaV/Zqd48zhM/deSEuczIjq/oLF3HFqpIpNQvyR/RgD7sZe59KkuTfZD8rQMseXxeTGSrThG4VUVzi4jEKPrhhAzmUlyvT3/G7GEuXaB9OHZ6N5GBdeYHwo0QsEwXT0amaWCVMiZny4KUpz4aAPvJn4kVNINGQEi0y8ODsSWEgmY1p0SV98BJOWMIIgCPuYQFxX7s0BDLJ54gZA06zCoUziO/fFpQ+nmzgN4e/kev35gwf4xml9Bpwuss8deOXfsuU0vBEqjShm4ATTwKOumr7qJRp0cfD+RNXD6cbrt0kKeLDAzcFTemDLFaVbc0TVL/LyE0UQhw2RrZerl5dN0pQMUYxQVrNEKmEA/H9lTuCVx6EaKz78+0GroxbTPt5BBKRz7Ypv8203Flhyd6wZj4Ov3g+UI37/CTTCc+zn6CwcWdKpdMduBMcjEnggcsj9dAyn5bSPp6N+1ScxVEl3LdShLnR7LBxsv7nP1x3g1L9UAe3DFqtC1dBlVPs9TbHN+InrkEV3SynX0IxfYLKfSEv/Z/EuxK5e6W/g7lW+xpy7k0DaBIEIpUdeo7DohdC/3bWP5G7AjL38GHVavO99BUPoi7sWw9Dc=
   app:
     test3: scottish-power-mock-api-pz
   run: restart
 services:
-  - mongodb
-
+- mongodb
 before_script:
-  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
+- mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
