@@ -27,7 +27,7 @@ export const scottishPowerService = {
             };
 
             // A minimum of two seconds, randomly up to ten
-            const randomTime = 2000 + Math.floor((Math.random() * 2000) + 1);
+            const randomTime = 1000 + Math.floor((Math.random() * 1000) + 1);
 
             // Schedule the 252 reply
             setTimeout(send252, randomTime, packet);
