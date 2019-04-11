@@ -44,15 +44,43 @@ export class EasySoap {
         return("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
             "   <soapenv:Header/>" +
             "   <soapenv:Body>" +
-            "      <MT_PrepaymentRequestInput_252>" +
-            "      <Message>" +
-            "        <ExternalID>" + externalId + "</ExternalID>\n" +
-            "        <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
-            "        <Utrn>" + utrn + "</Utrn>" +
-            "      </Message>" +
-            "      </MT_PrepaymentRequestInput_252>" +
+            "      <ED_PrepaymentResponseOutput_252>" +
+            "         <Response>" +
+            "            <ExternalID>" + externalId + "</ExternalID>" +
+            "            <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
+            "            <Utrn>" + utrn + "</Utrn>" +
+            "         </Response>" +
+            "         <Messages>" +
+            "           <Message>" +
+            "             <Type>A</Type>" +
+            "             <Code>B</Code>" +
+            "             <Text>T</Text>" +
+            "           </Message>" +
+            "         </Messages>" +
+            "      </ED_PrepaymentResponseOutput_252>" +
             "   </soapenv:Body>" +
             "</soapenv:Envelope>");
     }
 }
 
+/*
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ED_PrepaymentResponseOutput_252>
+	      <Response>
+	      	<ExternalID>PayzoneXYZ</ExternalID>
+	      	<PaymentIdentifier>1234567765432</PaymentIdentifier>
+	      	<Utrn>100.01</Utrn>
+	       </Response>
+	       <Messages>
+	         <Message>
+		         <Type>A</Type>
+		         <Code>B</Code>
+		         <Text>T</Text>
+	         </Message>
+	       </Messages>
+      </ED_PrepaymentResponseOutput_252>
+   </soapenv:Body>
+</soapenv:Envelope>
+ */
