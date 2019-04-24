@@ -1,3 +1,5 @@
+import { ErrorMessageStructure } from "./error-service";
+
 const axios = require("axios");
 
 /**
@@ -40,8 +42,18 @@ export class EasySoap {
         });
     }
 
-    get252XML(externalId: string, paymentIdentifier: string, utrn: string): string {
-        return("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
+    get252XML(externalId: string, paymentIdentifier: string, utrn: string, error: any): string {
+        let xmlForError: String = "";
+
+        if (error) {
+            xmlForError = " <Message>" +
+                "             <Type>" + error[0] + "</Type>" +
+                "             <Code>" + error[1] + "</Code>" +
+                "             <Text>" + error[2] + "</Text>" +
+                "           </Message>";
+        }
+
+        const retVal = ("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
             "   <soapenv:Header/>" +
             "   <soapenv:Body>" +
             "      <ED_PrepaymentResponseOutput_252>" +
@@ -51,15 +63,12 @@ export class EasySoap {
             "            <Utrn>" + utrn + "</Utrn>" +
             "         </Response>" +
             "         <Messages>" +
-            "           <Message>" +
-            "             <Type>A</Type>" +
-            "             <Code>B</Code>" +
-            "             <Text>T</Text>" +
-            "           </Message>" +
+            xmlForError +
             "         </Messages>" +
             "      </ED_PrepaymentResponseOutput_252>" +
             "   </soapenv:Body>" +
             "</soapenv:Envelope>");
+        return(retVal);
     }
 }
 
