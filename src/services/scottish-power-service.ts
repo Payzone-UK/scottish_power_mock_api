@@ -23,7 +23,7 @@ export const scottishPowerService = {
             // Decide whether to simulate an error
             const isHintToProduceError = ErrorService.matches_an_error_code(message["PaymentIdentifier"]);
 
-            const  theResponse: SoapResponse252 = {
+            const theResponse: SoapResponse252 = {
                 externalId: message["ExternalID"],
                 paymentIdentifier: message["PaymentIdentifier"],
                 paymentSource: message["PaymentSource"],
@@ -32,7 +32,12 @@ export const scottishPowerService = {
             };
 
             // A minimum of two seconds, randomly up to ten
-            const randomTime = 1000 + Math.floor((Math.random() * 1000) + 1);
+            let randomTime = 1000 + Math.floor((Math.random() * 1000) + 1);
+
+            // Simulate the 252 not relying with a UTRN
+            if (message["PaymentIdentifier"].endsWith("5000")) {
+              randomTime = 1000000;
+            }
 
             // Schedule the 252 reply
             setTimeout(send252, randomTime, theResponse);
@@ -87,5 +92,5 @@ function send252(p: SoapResponse252) {
  */
 function reverse_a_number(n: string) {
     n = n + "";
-    return n.split("").reverse().join("");
+    return n.split("").reverse().join("").substring(0, 10);
 }
