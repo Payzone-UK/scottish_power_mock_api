@@ -65,7 +65,7 @@ function send252(p: SoapResponse252) {
         "Content-Type": "text/xml;charset=UTF-8"
     };
 
-    const utrn = reverse_a_number(p.externalId);
+    const utrn = randomString(20);
 
     (async () => {
         const {response} = await easySoap.soapRequest(wsdl_url, headers,
@@ -93,4 +93,18 @@ function send252(p: SoapResponse252) {
 function reverse_a_number(n: string) {
     n = n + "";
     return n.split("").reverse().join("").substring(0, 10);
+}
+
+/*
+ * Or use this way to create a UTRN
+ */
+function randomString(len: number) {
+    const charSet: string = "0123456789";
+
+    let randomString = "";
+    for (let i = 0; i < len; i++) {
+        const randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz, randomPoz + 1);
+    }
+    return randomString;
 }
