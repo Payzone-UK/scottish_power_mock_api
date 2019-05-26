@@ -16,6 +16,7 @@ const axios = require("axios");
 
 export class EasySoap {
     soapRequest(url: string, headers: any, xml: string, timeout = 10000): any {
+        console.log("The XML=" + xml);
         return new Promise((resolve, reject) => {
             axios({
                 method: "post",
@@ -70,6 +71,35 @@ export class EasySoap {
             "</soapenv:Envelope>");
         return(retVal);
     }
+
+    get254XML(externalId: string, paymentIdentifier: string, utrn: string, error: any): string {
+        let xmlForError: String = "";
+
+        if (error) {
+            xmlForError = " <Message>" +
+                "             <Type>" + error[0] + "</Type>" +
+                "             <Code>" + error[1] + "</Code>" +
+                "             <Text>" + error[2] + "</Text>" +
+                "           </Message>";
+        }
+
+        const retVal = ("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
+            "   <soapenv:Header/>" +
+            "   <soapenv:Body>" +
+            "      <ns0:MT_PrepaymentReversalResponseOutput_253_254 xmlns:ns0=\"urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254\">" +
+            "         <Response>" +
+            "            <ExternalID>" + externalId + "</ExternalID>" +
+            "            <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
+            "            <UTRN>" + utrn + "</UTRN>" +
+            "         </Response>" +
+            "         <Messages>" +
+            xmlForError +
+            "         </Messages>" +
+            "      </ns0:MT_PrepaymentReversalResponseOutput_253_254>" +
+            "   </soapenv:Body>" +
+            "</soapenv:Envelope>");
+        return(retVal);
+    }
 }
 
 /*
@@ -92,4 +122,22 @@ export class EasySoap {
       </ED_PrepaymentResponseOutput_252>
    </soapenv:Body>
 </soapenv:Envelope>
+ */
+
+/*
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:MT_PrepaymentReversalResponseOutput_253_254 xmlns:ns0="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254">
+   <Response>
+      <ExternalID>MDCXO9QF2K1001X0800MJKL</ExternalID>
+      <PaymentIdentifier>6541256611653559</PaymentIdentifier>
+      <UTRN>85425635214513013369</UTRN>
+      <Messages>
+         <Message>
+            <Type>S</Type>
+            <Code>SAP-REVACC</Code>
+            <Text>Reversal Request Accepted</Text>
+         </Message>
+      </Messages>
+   </Response>
+</ns0:MT_PrepaymentReversalResponseOutput_253_254>
  */

@@ -13,7 +13,7 @@
 import { EasySoap } from "../services/easy_soap";
 import { ErrorService, ErrorMessageStructure } from "./error-service";
 
-export const scottishPowerService = {
+export const twoFiveTwoService = {
     HTTPS_Port: {
         SI_PrepaymentRequest_Out(args: any ): String {
             console.log("SI_PrepaymentRequest_Out called");
@@ -65,7 +65,7 @@ function send252(p: SoapResponse252) {
         "Content-Type": "text/xml;charset=UTF-8"
     };
 
-    const utrn = randomString(20);
+    const utrn = randomString(20); // "12345685245469513574";
 
     (async () => {
         const {response} = await easySoap.soapRequest(wsdl_url, headers,
