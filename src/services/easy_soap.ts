@@ -83,21 +83,16 @@ export class EasySoap {
                 "           </Message>";
         }
 
-        const retVal = ("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
-            "   <soapenv:Header/>" +
-            "   <soapenv:Body>" +
-            "      <ns0:MT_PrepaymentReversalResponseOutput_253_254 xmlns:ns0=\"urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254\">" +
+        const retVal = (
             "         <Response>" +
             "            <ExternalID>" + externalId + "</ExternalID>" +
             "            <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
             "            <UTRN>" + utrn + "</UTRN>" +
             "         </Response>" +
             "         <Messages>" +
-            xmlForError +
-            "         </Messages>" +
-            "      </ns0:MT_PrepaymentReversalResponseOutput_253_254>" +
-            "   </soapenv:Body>" +
-            "</soapenv:Envelope>");
+                        xmlForError +
+            "         </Messages>");
+
         return(retVal);
     }
 }
@@ -125,6 +120,8 @@ export class EasySoap {
  */
 
 /*
+ This is the response for a reversal
+
 <?xml version="1.0" encoding="UTF-8"?>
 <ns0:MT_PrepaymentReversalResponseOutput_253_254 xmlns:ns0="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254">
    <Response>
@@ -140,4 +137,19 @@ export class EasySoap {
       </Messages>
    </Response>
 </ns0:MT_PrepaymentReversalResponseOutput_253_254>
+
+The request XML below worked from curl
+
+<soapenv:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ns0:MT_PrepaymentReversalRequestInput_253_254 xmlns:ns0="urn:scottishpower.com:SMART:PAYOUTLET:ISU1:PrepaymentReversalSyncRequest:253_254">
+           <Request>
+              <ExternalID>016026180710</ExternalID>
+              <PaymentIdentifier>6332269160261807100</PaymentIdentifier>
+              <UTRN>12345685245469513574</UTRN>
+           </Request>
+        </ns0:MT_PrepaymentReversalRequestInput_253_254>
+    </soapenv:Body>
+</soapenv:Envelope>
  */

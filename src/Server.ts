@@ -33,7 +33,7 @@ export class Server {
         this.app.use("/scottish-power-251", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: twoFiveTwoService }, wsdl: wsdl251}));
 
         const wsdl253 = require("fs").readFileSync("./wsdl/PrepaymentReversalSyncRequest_Out_253_254.wsdl", "utf8");
-        this.app.use("/scottish-power-253", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: twoFiveThreeService }, wsdl: wsdl253}));
+        this.app.use("/scottish-power-253", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentReversalSyncRequest_Out: twoFiveThreeService }, wsdl: wsdl253}));
 
         // Call http://localhost:3090/soap/calculation?wsdl
         const calculatorXml = require("fs").readFileSync("./wsdl/calculator.wsdl", "utf8");
