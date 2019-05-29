@@ -16,6 +16,7 @@ const axios = require("axios");
 
 export class EasySoap {
     soapRequest(url: string, headers: any, xml: string, timeout = 10000): any {
+        console.log("The XML=" + xml);
         return new Promise((resolve, reject) => {
             axios({
                 method: "post",
