@@ -64,7 +64,7 @@ function send252(p: SoapResponse252) {
 
     // So that this mock server can be used from two Product Servers, if the externalId
     // contains this string, reply to this other Product Server.
-    if (p.externalId.indexOf("26111966")) {
+    if (p.externalId.indexOf("26111966") != -1 ) {
         wsdl_url = process.env.SECONDARY_PRODUCT_SERVER_URL + process.env.WSDL_252;
     }
 
