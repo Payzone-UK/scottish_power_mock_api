@@ -60,7 +60,14 @@ interface SoapResponse252 {
 function send252(p: SoapResponse252) {
     const easySoap = new EasySoap();
 
-    const wsdl_url = process.env.PRODUCT_SERVER_URL + process.env.WSDL_252;
+    let wsdl_url = process.env.PRODUCT_SERVER_URL + process.env.WSDL_252;
+
+    // So that this mock server can be used from two Product Servers, if the externalId
+    // contains this string, reply to this other Product Server.
+    if (p.externalId.indexOf("26111966")) {
+        wsdl_url = process.env.SECONDARY_PRODUCT_SERVER_URL + process.env.WSDL_252;
+    }
+
     const headers = {
         "Content-Type": "text/xml;charset=UTF-8"
     };

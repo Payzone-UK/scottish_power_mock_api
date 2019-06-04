@@ -73,6 +73,10 @@ This is where the SOAP 252 reply will go to
 
 PRODUCT_SERVER_URL=http://localhost:3020
 
+To allow more than one Product Server to use this mock server, 
+if the externalId contains the string 26111966, then 252 requests will go here
+SECONDARY_PRODUCT_SERVER_URL=http://localhost:3030
+
 WSDL_252=/two_five_two?wsdl
 
 ## Testing
