@@ -43,7 +43,7 @@ export class EasySoap {
         });
     }
 
-    get252XML(externalId: string, paymentIdentifier: string, utrn: string, error: any): string {
+    get252XML(externalID: string, paymentIdentifier: string, utrn: string, error: any): string {
         let xmlForError: String = "";
 
         if (error) {
@@ -59,9 +59,9 @@ export class EasySoap {
             "   <soapenv:Body>" +
             "      <ED_PrepaymentResponseOutput_252>" +
             "         <Response>" +
-            "            <ExternalID>" + externalId + "</ExternalID>" +
+            "            <ExternalID>" + externalID + "</ExternalID>" +
             "            <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
-            "            <Utrn>" + utrn + "</Utrn>" +
+            "            <utrn>" + utrn + "</utrn>" +
             "         </Response>" +
             "         <Messages>" +
             xmlForError +

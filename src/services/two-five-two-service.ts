@@ -24,7 +24,7 @@ export const twoFiveTwoService = {
             const isHintToProduceError = ErrorService.matches_an_error_code(message["PaymentIdentifier"]);
 
             const theResponse: SoapResponse252 = {
-                externalId: message["ExternalID"],
+                externalID: message["ExternalID"],
                 paymentIdentifier: message["PaymentIdentifier"],
                 paymentSource: message["PaymentSource"],
                 amount: message["Amount"],
@@ -34,7 +34,7 @@ export const twoFiveTwoService = {
             // A minimum of two seconds, randomly up to ten
             let randomTime = 1000 + Math.floor((Math.random() * 1000) + 1);
 
-            // Simulate the 252 not relying with a UTRN
+            // Simulate the 252 not replying with a UTRN
             if (message["PaymentIdentifier"].endsWith("5000")) {
               randomTime = 1000000;
             }
@@ -50,7 +50,7 @@ export const twoFiveTwoService = {
 };
 
 interface SoapResponse252 {
-    externalId: string;
+    externalID: string;
     paymentIdentifier: string;
     paymentSource: string;
     amount: string;
@@ -78,7 +78,7 @@ function send252(p: SoapResponse252) {
 
     (async () => {
         const {response} = await easySoap.soapRequest(wsdl_url, headers,
-            easySoap.get252XML(p.externalId,
+            easySoap.get252XML(p.externalID,
                 p.paymentIdentifier,
                 utrn.toString(),
                 p.error),
