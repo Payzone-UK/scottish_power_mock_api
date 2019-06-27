@@ -15,7 +15,7 @@ export const twoFiveThreeService = {
 
             return({
                 Response: {
-                  ExternalId: message["ExternalID"],
+                  ExternalID: message["ExternalID"],
                   PaymentIdentifier: message["PaymentIdentifier"],
                   UTRN: message["UTRN"],
                   Messages: {
