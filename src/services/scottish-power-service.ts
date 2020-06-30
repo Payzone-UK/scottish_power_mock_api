@@ -56,16 +56,20 @@ function send252(p: Packet) {
     const randomUTRN = reverse_a_number(p.externalId);
 
     (async () => {
-        const {response} = await easySoap.soapRequest(wsdl_url, headers,
-            easySoap.get252XML(p.externalId,
-                p.paymentIdentifier,
-                randomUTRN.toString() ),
-            10000);
+        try {
+            const {response} = await easySoap.soapRequest(wsdl_url, headers,
+                easySoap.get252XML(p.externalId,
+                    p.paymentIdentifier,
+                    randomUTRN.toString() ),
+                10000);
 
-        if (response.statusCode == 200) {
-            console.log("Sent UTRN via 252 successfully - " + randomUTRN.toString() );
-        } else {
-            console.log("252 Failed to be sent");
+            if (response.statusCode == 200) {
+                console.log("Sent UTRN via 252 successfully - " + randomUTRN.toString() );
+            } else {
+                console.log("252 Failed to be sent");
+            }
+        } catch ( error ) {
+            console.error(error);
         }
     })();
 }

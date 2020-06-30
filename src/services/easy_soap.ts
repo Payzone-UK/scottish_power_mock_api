@@ -44,13 +44,13 @@ export class EasySoap {
         return("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
             "   <soapenv:Header/>" +
             "   <soapenv:Body>" +
-            "      <MT_PrepaymentRequestInput_252>" +
-            "      <Message>" +
+            "      <ED_PrepaymentResponseOutput_252>" +
+            "      <Response>" +
             "        <ExternalID>" + externalId + "</ExternalID>\n" +
             "        <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
-            "        <Utrn>" + utrn + "</Utrn>" +
-            "      </Message>" +
-            "      </MT_PrepaymentRequestInput_252>" +
+            "        <UTRN>" + utrn + "</UTRN>" +
+            "      </Response>" +
+            "      </ED_PrepaymentResponseOutput_252>" +
             "   </soapenv:Body>" +
             "</soapenv:Envelope>");
     }
