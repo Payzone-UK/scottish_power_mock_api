@@ -40,6 +40,7 @@ export class EasySoap {
         });
     }
 
+
     get252XML(externalId: string, paymentIdentifier: string, utrn: string): string {
         return("<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/'>" +
             "   <soapenv:Header/>" +
@@ -50,9 +51,33 @@ export class EasySoap {
             "        <PaymentIdentifier>" + paymentIdentifier + "</PaymentIdentifier>" +
             "        <UTRN>" + utrn + "</UTRN>" +
             "      </Response>" +
+            "      <Messages>" +
+            "        <Message>" +
+            "          <Type>S</Type>" +
+            "          <Code>SUCC</Code>" +
+            "          <Text>UTRN number generated:" + utrn + "</Text>" +
+            "        </Message>" +
+            "      </Messages>" +
             "      </ED_PrepaymentResponseOutput_252>" +
             "   </soapenv:Body>" +
             "</soapenv:Envelope>");
     }
+    /*
+     *   Example
+        {
+            "Response": {
+                "ExternalID": "PO3916933031",
+                "PaymentIdentifier": "63322691609475249980",
+                "UTRN": "74362727063220161728"
+            },
+            "Messages": {
+                "Message": {
+                    "Type": "S",
+                    "Code": "SUCC",
+                    "Text": "UTRN number generated:74362727063220161728"
+                }
+            }
+         }
+     */
 }
 
