@@ -5,6 +5,7 @@ import * as path from "path";
 import { soap } from "express-soap";
 import { twoFiveOneService } from "./services/two-five-one-service";
 import { twoFiveThreeService } from "./services/two-five-three-service";
+import { Request, Response } from "express";
 
 
 export class Server {
@@ -23,11 +24,15 @@ export class Server {
 
         return server;
     }
-
     private configure(): void {
 
         this.app.use(express.static(path.join(__dirname, "public")));
         this.app.use(logger("dev"));
+
+        // Mock the Payzone remaining_credit call
+        this.app.get("/v1/merchant/remaining_credit", function (req: Request, res: Response) {
+            res.send("1000000");
+        });
 
         const twoFiveOneXml = require("fs").readFileSync("./wsdl/PrepaymentRequest_Out_251.wsdl", "utf8");
         this.app.use("/scottish-power-251", soap({ services: {SP_PAYOUTLET_D_SI_PrepaymentRequest_Out: twoFiveOneService }, wsdl: twoFiveOneXml}));

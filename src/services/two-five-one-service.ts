@@ -48,7 +48,7 @@ interface Packet {
 function send252(p: Packet) {
     const easySoap = new EasySoap();
 
-    const wsdl_url = process.env.PRODUCT_SERVER_URL + '/scottish-power-252';
+    const wsdl_url = process.env.PRODUCT_SERVER_URL + "/scottish-power-252";
     const headers = {
         "Content-Type": "text/xml;charset=UTF-8"
     };

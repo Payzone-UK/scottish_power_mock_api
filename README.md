@@ -8,6 +8,10 @@ It was originally written as a development tool before the SP interfaces were re
 
 Its a development tool that should allow us to work on the project before the actual API is ready.
 
+You can point the PAYZONE_API_BASE at this server too because it will respond with HTTP 200 for
+any request to '/v1/merchant/remaining_credit'. This means you don't need to set up a Payzone 
+merchant to test the SP Product Server.
+
 The WSDL descriptions of the SOAP API and are in the docs directory.
 
 The API is described in flow charts and documents the same place.
