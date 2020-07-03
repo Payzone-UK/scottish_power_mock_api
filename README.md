@@ -1,5 +1,7 @@
 # Mock Soap API for the Scottish Power API
 
+[ Update: See the README.md in the Product Server Repo for info about running Postman tests,  (tests/postman/README.md) ]
+
 This node server mocks the Scottish Power interfaces for end to end testing of the product server.
 
 It will respond to 251 (prepayment) and 253 (reversal) requests, with successful results. 
@@ -24,22 +26,22 @@ In the diagram below, the purple octagon represents this server.
 
 
 
-## Install
+## Install and run
 
-npm run build
-
-
-## How to start
-
-Set an environment variable called PRODUCT_SERVER_URL to point to the Product Server being
-tested, eg http://localhost:3020
-
-npm start 
+* git clone git@github.com:Payzone-UK/scottish_power_mock_api.git
+* cd scottish_power_mock_api
+* git checkout feature/reversals
+* npm install
+* npm run build # You might need to manually create some dirs, eg mkdir -p dist/public/js
+* export PRODUCT_SERVER_URL=http://localhost:3020
+* npm start
 
 
 ## How to use
 
 From curl or Postman,  POST the following json to http://localhost:3090/scottish-power-251 
+
+See the README.md in the Product Server Repo for info about running Postman tests,  (tests/postman/README.md)
 
 ### 251 - prepayment
 
