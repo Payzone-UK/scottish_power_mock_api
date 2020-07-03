@@ -12,7 +12,7 @@
 
 import { EasySoap } from "../services/easy_soap";
 
-export const scottishPowerService = {
+export const twoFiveOneService = {
     HTTPS_Port: {
         SI_PrepaymentRequest_Out(args: any ): void {
             console.log("SI_PrepaymentRequest_Out called");
@@ -48,7 +48,7 @@ interface Packet {
 function send252(p: Packet) {
     const easySoap = new EasySoap();
 
-    const wsdl_url = process.env.PRODUCT_SERVER_URL + process.env.WSDL_252;
+    const wsdl_url = process.env.PRODUCT_SERVER_URL + "/scottish-power-252";
     const headers = {
         "Content-Type": "text/xml;charset=UTF-8"
     };
@@ -56,16 +56,20 @@ function send252(p: Packet) {
     const randomUTRN = reverse_a_number(p.externalId);
 
     (async () => {
-        const {response} = await easySoap.soapRequest(wsdl_url, headers,
-            easySoap.get252XML(p.externalId,
-                p.paymentIdentifier,
-                randomUTRN.toString() ),
-            10000);
+        try {
+            const {response} = await easySoap.soapRequest(wsdl_url, headers,
+                easySoap.get252XML(p.externalId,
+                    p.paymentIdentifier,
+                    randomUTRN.toString() ),
+                10000);
 
-        if (response.statusCode == 200) {
-            console.log("Sent UTRN via 252 successfully - " + randomUTRN.toString() );
-        } else {
-            console.log("252 Failed to be sent");
+            if (response.statusCode == 200) {
+                console.log("Sent UTRN via 252 successfully - " + randomUTRN.toString() );
+            } else {
+                console.log("252 Failed to be sent");
+            }
+        } catch ( error ) {
+            console.error(error);
         }
     })();
 }
