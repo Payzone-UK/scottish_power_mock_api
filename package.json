@@ -42,7 +42,7 @@
     "express-soap": "^1.1.2",
     "express-validator": "^4.3.0",
     "fbgraph": "^1.4.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "lusca": "^1.5.2",
     "method-override": "^3.0.0",
     "mocha": "^6.0.2",
